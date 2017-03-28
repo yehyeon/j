@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+
+    <style type="text/css">
+        html,body{height:100%;}
+        section{height:100%; border:1px #F00 solid;}
+        .nav{height:80px; line-height:80px; text-align:center; background-color: rgba(0,0,0,.5); position:fixed; width:100%; left:0; top:0;}
+        ul{margin:0; padding:0; list-style:none;}
+        li{display:inline-block; color:#FFF;}
+    </style>
+
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('.nav li').click(function(){
+                var idx = $(this).index();
+                var sec = $('body section').eq(idx).offset().top;
+                $('body,html').animate({
+                    'scrollTop':sec
+                })
+            })
+
+        })
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class="nav">
+        <ul>
+            <li>text1</li>
+            <li>text2</li>
+            <li>text3</li>
+            <li>text4</li>
+        </ul>
+    </div>
+
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+
+
+</body>
+</html>

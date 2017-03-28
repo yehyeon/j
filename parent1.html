@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sidemenu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+    <style>
+
+        .hello{color:blue;}
+    </style>
+    <script>
+    $(document).ready(function(){
+
+        document.getElementById('hh')
+
+
+
+        // for(i=0;i<$('.faq li').length;i++){
+        //     $('.faq li').eq(i).children('span').last().css('display','none')
+        // }
+
+
+        $('.faq li').each(function(i){
+            $(this).children('span').last().css('display','none');
+        })
+
+        $('.faq li').children('span').click(function(){
+            $(this).next().slideToggle().parent()
+        })
+
+
+
+
+
+        // var aa = $('.faq')
+        // console.log(aa[0])
+
+       //$('.faq li:eq(0)').css('border','1px #00F solid')
+
+
+    })
+
+    </script>
+
+    <style>
+    ul{list-style:none; margin:0; padding:0;}
+    .faq{width:500px; font-size:12px; border:1px #F00 solid;}
+    .faq li{outline:1px #F00 solid; padding:5px 10px;}
+
+    </style>
+</head>
+<body>
+
+    <span id="hh">hello world</span>
+
+
+    <div class="faq">
+        <ul>
+            <li>
+                <span class="on">Q:학기중에 생활관에 들어가고 싶은데 어떻게 하나요?</span>
+                <span>A:학기중에도 인터넷 접수하시면 됩니다.인터넷 접수는 언제든지 가능합니다.공석이 있을경우 개별적으로 연락해 드립니다.</span>
+            </li>
+            <li>
+                <span class="on">Q:학기중에 생활관에 들어가고 싶은데 어떻게 하나요?</span>
+                <span>A:학기중에도 인터넷 접수하시면 됩니다.인터넷 접수는 언제든지 가능합니다.공석이 있을경우 개별적으로 연락해 드립니다.</span>
+            </li>
+
+            <li>
+                <span>Q:학기중에 생활관에 들어가고 싶은데 어떻게 하나요?</span>
+                <span>A:학기중에도 인터넷 접수하시면 됩니다.인터넷 접수는 언제든지 가능합니다.공석이 있을경우 개별적으로 연락해 드립니다.</span>
+            </li>
+
+            <li>
+                <span>Q:학기중에 생활관에 들어가고 싶은데 어떻게 하나요?</span>
+                <span>A:학기중에도 인터넷 접수하시면 됩니다.인터넷 접수는 언제든지 가능합니다.공석이 있을경우 개별적으로 연락해 드립니다.</span>
+            </li>
+
+        </ul>
+    </div>
+
+
+
+</body>
+</html>
