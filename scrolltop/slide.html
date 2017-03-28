@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+    ul{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    }
+    .btngroup button{
+        position:absolute;
+        z-index:1;
+        top:50%;
+    }
+
+    button.next{
+        right:0;
+    }
+    button.prev{
+        left:0;
+    }
+    .slide{
+        margin:0 auto;
+        width:500px;
+        height:300px;
+        border:1px #F00 solid;
+        position:relative;
+        text-align:center;
+
+    }
+    .slide li{
+        border:1px #F00 solid;
+        display:inline-block;
+    }
+    li.on a{
+        background-color: #F00;
+    }
+    li a{
+        position:relative;
+        top:270px;
+        z-index:10;
+        display:block;
+        width:20px;
+        height:20px;
+        color:#FFF;
+        border:1px #FFF solid;
+    }
+
+    li:first-child div{
+        display:block;
+    }
+    li div{
+        width:500px; height:300px;
+        border:1px #F00 solid;
+        position:absolute;
+        left:0;
+        top:0;
+        display:none;
+    }
+
+    li:nth-child(1) div{
+        background-color: #F00;
+    }
+
+    li:nth-child(2) div{
+        background-color: #FF0;
+    }
+
+    li:nth-child(3) div{
+        background-color: #F0F;
+    }
+
+    li:nth-child(4) div{
+        background-color: #0F0;
+    }
+    li:nth-child(5) div{
+        background-color: #00F;
+    }
+    </style>
+
+    <script>
+        $(function(){
+
+            var ww = $('.slide').width();
+            var idx = 0;
+            $('.next').click(function(){ //다음버튼 클릭하면 실행해
+                $('.slide li')  //슬라이드 클레스 안에 li
+                .eq(idx) //idx 번째
+                 .find('div')//자식요소인 div 찾아
+                .animate({ //애니메이션줘
+                    left:-ww // 왼쪽 으로 ww 만큼 이동해
+                })
+                .parent() // 그의 부모에
+                .next() // 다음 녀석에
+                .find('div') //자식중 div 찾아
+                .css({
+                    'display':'block', //눈에보이게하고
+                    'left':ww // 우측에 배치해
+                })
+                .animate({ //움직여
+                    'left':0 // 눈에보이는곳으로
+                })
+
+                idx++ //ㄱ그리고다음놈 준비해 .
+
+                if(idx == $('.slide li').length){ // 마지막이되면
+                    idx = 0;
+                    $('.slide li')
+                    .eq(idx)
+                    .find('div')
+                    .css({
+                        'left':ww
+                    }).animate({
+                        "left":'0'
+                    })
+                }
+            })
+
+        })
+
+
+
+    </script>
+
+</head>
+<body>
+    <div class="slide">
+        <div class="btngroup">
+            <button class="next">다음</button>
+            <button class="prev">이전</button>
+        </div>
+        <ul>
+            <li>
+                <a href="">1</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">2</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">3</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">4</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">5</a>
+                <div></div>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

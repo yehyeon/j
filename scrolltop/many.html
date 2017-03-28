@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+         <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+      <script>
+      $(document).ready(function(){
+
+    var starttt = function(){
+        $('body').append('<button class="tt">버튼생성</button>')
+     }
+
+
+    $('.start').click(starttt)
+
+    $('body').on('click','.tt',function(){
+      console.log('버튼이 생성됨!!~~')
+    })
+
+    $('.off').click(function(){
+        $('.start').off('click');
+    })
+
+     $('.start').click(starttt)
+
+})
+
+      </script>
+   </head>
+   <body>
+   <button class="start">스타트</button>
+   <button class="off">버튼off</button>
+
+   </body>
+</html>
