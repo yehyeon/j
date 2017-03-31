@@ -29,6 +29,7 @@
         border:1px #F00 solid;
         position:relative;
         text-align:center;
+        overflow:hidden;
 
     }
     .slide li{
@@ -36,7 +37,7 @@
         display:inline-block;
     }
     li.on a{
-        background-color: #F00;
+        background-color: #000;
     }
     li a{
         position:relative;
@@ -89,35 +90,63 @@
             $('.next').click(function(){ //다음버튼 클릭하면 실행해
                 $('.slide li')  //슬라이드 클레스 안에 li
                 .eq(idx) //idx 번째
+                .removeClass('on')
                  .find('div')//자식요소인 div 찾아
                 .animate({ //애니메이션줘
                     left:-ww // 왼쪽 으로 ww 만큼 이동해
                 })
                 .parent() // 그의 부모에
                 .next() // 다음 녀석에
+                .addClass('on')
                 .find('div') //자식중 div 찾아
                 .css({
                     'display':'block', //눈에보이게하고
                     'left':ww // 우측에 배치해
                 })
-                .animate({ //움직여
+                .stop().animate({ //움직여
                     'left':0 // 눈에보이는곳으로
                 })
 
                 idx++ //ㄱ그리고다음놈 준비해 .
 
-                if(idx == $('.slide li').length){ // 마지막이되면
+                if(idx == $('.slide li').length){  //idx가 증가하다보면 li와 같아지는 시점이 오고
+그게 마지막 이미지
                     idx = 0;
-                    $('.slide li')
-                    .eq(idx)
-                    .find('div')
-                    .css({
+                    $('.slide li').eq(idx).addClass('on')
+                    .find('div').css({
                         'left':ww
+                    }).stop().animate({
+                        "left":'0'
+                    })
+                }
+            })
+
+            $('.prev').click(function(){       //뒤로가기
+                $('.slide li').eq(idx).find('div')
+                .animate({
+                    "left":ww
+                }).parent().prev().find('div')
+                .css({
+                    'display':'block', //눈에 보이게 하고
+                    'left':-ww     //반대로 가기위해
+                }).animate({
+                    'left':0
+                })
+
+                idx--           //위에는 뻬기 이전 값,
+
+                if(idx < 0){
+                    idx = $('.slide li').length -1; //마지막 이미지 나오기 위해,
+                    이미지가 5개라서 -1
+                    $('.slide li').eq(idx).find('div').css({
+                        'left':-ww,
+                        'display':'block'
                     }).animate({
                         "left":'0'
                     })
                 }
             })
+
 
         })
 
