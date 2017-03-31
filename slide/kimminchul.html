@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .slide{width: 500px;height: 300px;border: 1px #f00 solid;margin: 0 auto;position: relative;text-align: center;overflow: hidden;}
+    ul{margin: 0;padding: 0;list-style: none;}
+    .slide li{display: inline-block;}
+    li div{width: 500px;height: 300px;position: absolute;left: 0;top: 0;display: none;}
+    li a{position: relative;z-index: 100;display: block;width: 20px;height: 20px;text-decoration: none;color:#fff; border: 1px #f00 solid;top: 270px;}
+    li.on a{background-color: #000;}
+    li:nth-child(1) div{background-color: #f00;}
+    li:nth-child(2) div{background-color: #ff0;}
+    li:nth-child(3) div{background-color: #0ff;}
+    li:nth-child(4) div{background-color: #0f0;}
+    li:nth-child(5) div{background-color: #f0f;}
+    .btngrp button{position: absolute;z-index: 1;}
+    button.next{top: 50%;right: 0;}
+    button.prev{top: 50%;left: 0;}
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      var idx = Math.floor(Math.random()*$('.slide li').length);
+      var wW = $('.slide').width();
+      var speed = 3000;
+      var call = function(){
+        $('.next').trigger('click');
+      };
+
+      $('.slide li').eq(idx).addClass('on').find('div').css('display','block')
+
+      // 자동넘김
+      var tt = setInterval(call, speed);
+
+      //마우스가 올라갔을 때 이벤트 정지
+      $('.slide li div').mouseenter(function(){
+        clearInterval(tt);
+      })
+
+      //마우스가 나갔을 때 이벤트 시작
+      $('.slide li div').mouseleave(function(){
+        tt = setInterval(call, speed);
+      })
+
+      //한번에 작성가능
+
+      /*$('.slide li div').mouseenter(function(){
+        clearInterval(call);
+      }).mouseeleave(function(){
+        tt = setInterval(call, speed);
+      })*/
+
+
+      // 다음버튼
+      $('.next').click(function(){
+        $('.slide li').eq(idx).removeClass('on').find('div').animate({
+          'left' : -wW
+        }).parent().next().addClass('on').find('div').css({
+          'display':'block',
+          'left' : wW
+        }).stop().animate({
+          'left':'0'
+        })
+        idx++;
+        if(idx == $('.slide li').length){
+          idx = 0;
+          $('.slide li').eq(idx).addClass('on').find('div').css({
+            'display' : 'block',
+            'left' : wW
+          }).stop().animate({
+            'left' : '0'
+          })
+        }
+      })
+      //선생님 version
+      // 이전버튼
+      $('.prev').click(function(){
+        $('.slide li').eq(idx).removeClass('on').find('div').animate({
+          'left' : wW
+        }).parent().prev().addClass('on').find('div').css({
+          'display':'block',
+          'left' : -wW
+        }).stop().animate({
+          'left':'0'
+        })
+        idx--;
+        if(idx < 0){
+          idx = $('.slide li').length -1;
+          $('.slide li').eq(idx).addClass('on').find('div').css({
+            'display' : 'block',
+            'left' : -wW
+          }).stop().animate({
+            'left' : '0'
+          })
+        }
+      })
+
+      // 번호클릭
+      $('.slide li a').click(function(){
+        idx = $(this).parent().index();
+        // hisnum = $('.slide').find('li.on').index();
+        hisnum = $('.slide li.on').index();
+        if(hisnum < idx){
+          $('.slide li').eq(hisnum).removeClass('on').find('div').animate({
+            'left' : -wW
+          });
+          $('.slide li').eq(idx).addClass('on').find('div').css({
+            'display' : 'block',
+            'left' : wW
+          }).animate({
+            'left' : 0
+          });
+        }else if(hisnum > idx){
+          $('.slide li').eq(hisnum).removeClass('on').find('div').animate({
+            'left' : wW
+          });
+          $('.slide li').eq(idx).addClass('on').find('div').css({
+            'display' : 'block',
+            'left' : -wW
+          }).animate({
+            'left' : 0
+          });
+        }
+      })
+      // $('.prev').click(function(){
+      //   $('.slide li').eq(idx).find('div').animate({
+      //     'left' : wW
+      //   }).parent().prev().find('div').css({
+      //     'display' : 'block',
+      //     'left' : -wW
+      //   }).animate({
+      //     'left' : '0'
+      //   })
+      //   if(idx == 0){
+      //     idx = $('.slide li').length;
+      //     $('.slide li').eq(idx-1).find('div').css({
+      //       'display' : 'block',
+      //       'left' : -wW
+      //     }).animate({
+      //       'left' : '0'
+      //     })
+      //   }
+      //   console.log(idx);
+      //   idx--;
+      // })
+    })
+  </script>
+</head>
+<body>
+  <div class="slide">
+    <div class="btngrp">
+      <button class="next">다음</button>
+      <button class="prev">이전</button>
+    </div>
+    <ul>
+      <li>
+        <a href="javascript:void(0)">1</a>
+        <div></div>
+      </li>
+      <li>
+        <a href="javascript:void(0)">2</a>
+        <div></div>
+      </li>
+      <li>
+        <a href="javascript:void(0)">3</a>
+        <div></div>
+      </li>
+      <li>
+        <a href="javascript:void(0)">4</a>
+        <div></div>
+      </li>
+      <li>
+        <a href="javascript:void(0)">5</a>
+        <div></div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

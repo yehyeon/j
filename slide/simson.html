@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+    ul{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    }
+    .btngroup button{
+        position:absolute;
+        z-index:1;
+        top:50%;
+    }
+
+    button.next{
+        right:0;
+    }
+    button.prev{
+        left:0;
+    }
+    .slide{
+        overflow:hidden;
+        margin:0 auto;
+        width:500px;
+        height:300px;
+        border:1px #F00 solid;
+        position:relative;
+        text-align:center;
+
+    }
+    .slide li{
+        border:1px #F00 solid;
+        display:inline-block;
+    }
+    li.on a{
+        background-color: #000;
+    }
+    li a{
+        position:relative;
+        top:270px;
+        z-index:10;
+        display:block;
+        width:20px;
+        height:20px;
+        color:#FFF;
+        border:1px #FFF solid;
+    }
+
+    li:first-child div{
+        display:block;
+    }
+    li div{
+        width:500px; height:300px;
+        border:1px #F00 solid;
+        position:absolute;
+        left:0;
+        top:0;
+        display:none;
+    }
+
+    li:nth-child(1) div{
+        background-color: #F00;
+    }
+
+    li:nth-child(2) div{
+        background-color: #FF0;
+    }
+
+    li:nth-child(3) div{
+        background-color: #F0F;
+    }
+
+    li:nth-child(4) div{
+        background-color: #0F0;
+    }
+    li:nth-child(5) div{
+        background-color: #00F;
+    }
+    </style>
+
+    <script>
+       // document.ready와 같음
+       $(function(){
+          var idx = 0;
+          var ww = $('.slide').width();
+
+          $('.next').click(function(){
+             $('.slide li').eq(idx).removeClass('on').find('div').animate({
+                'left': -ww
+             }).parent().next().addClass('on').find('div').css({
+                'display':'block',
+                'left': ww
+             }).stop().animate({
+                'left':0
+             })
+             idx++
+             console.log(idx);
+             if (idx == $('.slide li').length){
+                idx = 0;
+                $('.slide li').removeClass('on').eq(idx).find('div').css({
+                   'left':ww
+                }).animate({
+                   'left':'0'
+                }).parent().addClass('on')
+             }
+          });
+
+          $('.prev').click(function(){
+             $('.slide li').eq(idx).removeClass('on').find('div').animate({
+                'left': ww
+             }).parent().prev().addClass('on').find('div').css({
+                'display':'block',
+                'left':-ww
+             }).animate({
+                'left':0
+             });
+             console.log(idx);
+
+             idx--;
+
+             if (idx < 0){
+                idx = $('.slide li').length;
+                $('.slide li').eq(idx-1).find('div').css({
+                   'left':-ww,
+                   'display':'block'
+                }).stop().animate({
+                   'left':'0'
+                }).parent().addClass('on')
+             }
+
+             console.log(idx);
+          });
+					})
+
+
+
+
+    </script>
+
+</head>
+<body>
+    <div class="slide">
+        <div class="btngroup">
+            <button class="next">다음</button>
+            <button class="prev">이전</button>
+        </div>
+        <ul>
+            <li class="on">
+                <a href="">1</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">2</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">3</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">4</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">5</a>
+                <div></div>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+</html>
