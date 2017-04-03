@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+    ul{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    }
+    .btngroup button{
+        position:absolute;
+        z-index:1;
+        top:50%;
+    }
+
+    button.next{
+        right:0;
+    }
+    button.prev{
+        left:0;
+    }
+    .slide{
+        overflow:hidden;
+        margin:0 auto;
+        width:500px;
+        height:300px;
+        border:1px #F00 solid;
+        position:relative;
+        text-align:center;
+
+    }
+    .slide li{
+        border:1px #F00 solid;
+        display:inline-block;
+    }
+    li.on a{
+        background-color: #000;
+    }
+    li a{
+        position:relative;
+        top:270px;
+        z-index:10;
+        display:block;
+        width:20px;
+        height:20px;
+        color:#FFF;
+        border:1px #FFF solid;
+    }
+
+    li:first-child div{
+        display:block;
+    }
+    li div{
+        width:500px; height:300px;
+        border:1px #F00 solid;
+        position:absolute;
+        left:0;
+        top:0;
+        display:none;
+    }
+
+    li:nth-child(1) div{
+        background-color: #F00;
+    }
+
+    li:nth-child(2) div{
+        background-color: #FF0;
+    }
+
+    li:nth-child(3) div{
+        background-color: #F0F;
+    }
+
+    li:nth-child(4) div{
+        background-color: #0F0;
+    }
+    li:nth-child(5) div{
+        background-color: #00F;
+    }
+    </style>
+
+    <script>
+        $(function(){
+
+            var idx = 0;
+
+            function movemuent(시작점,끝점,대상){
+                 $('.slide li').eq(대상).find('div').css({
+                    'left':시작점,
+                    'display':'block'
+                }).animate({
+                    "left":끝점
+                })
+            }
+
+            $('.slide .next').click(function(){
+                movemuent("0","-100%",idx);
+                idx++
+                movemuent("100%","0",idx);
+
+                if(idx ==$('.slide li').length){
+                    idx = 0
+                     movemuent("100%","0",idx);
+                }
+
+
+
+            })
+
+
+
+        })
+
+
+
+    </script>
+
+</head>
+<body>
+    <div class="slide">
+        <div class="btngroup">
+            <button class="next">다음</button>
+            <button class="prev">이전</button>
+        </div>
+        <ul>
+            <li class="on">
+                <a href="">1</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">2</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">3</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">4</a>
+                <div></div>
+            </li>
+            <li>
+                <a href="">5</a>
+                <div></div>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

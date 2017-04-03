@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>태광실업</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .bars{
+            display:block;
+            height:4px;
+            width:0;
+            background-color:#0F0;
+            position:absolute;
+            bottom:0;
+            left:0;
+            z-index:100;
+            display:none;
+        }
+        .menu{
+            position:relative;
+
+        }
+
+    </style>
+    <script>
+       $(function(){
+
+           // $('.menu>ul>li').hover(마우스오버,마우스아웃)
+           $('.menu>ul>li').hover(function(){
+             $('.menu>ul>li div').stop().slideDown()
+               //마우스 오버
+               var pos_x = $(this).position().left;
+               $('.bars').stop().animate({
+                  'width':'220',
+                   'left':pos_x
+               });
+
+           },function(){
+               //마우스 아웃
+
+               $('.menu>ul>li div').children('div').stop().slideUp(1000,function(){
+                  console.log("아웃");
+                  })
+                   $('.bars').stop().animate({
+                  'width':'0',
+                   'left':'0'
+
+
+               })
+
+           })
+
+       })
+
+   </script>
+</head>
+<body>
+    <header>
+        <div>
+           <div class="gnb">
+
+               <div class="logo">
+                    <a href="#"><img src="http://www.tkgroup.co.kr/kor/_Img/logo.png" alt="" ></a>
+               </div>
+
+               <div class="site-option">
+                   <a href="" class="home">home</a>
+                   <a href="" class="lang-en">ENG</a>
+                   <a href="" class="sitemap">
+                       <span></span>
+                       <span></span>
+                       <span></span>
+                   </a>
+               </div>
+
+               <div class="menu">
+                   <span class="bars"></span>
+                   <ul>
+                        <li><a href="#">company</a>
+                            <div>
+                                <ul>
+                                    <li><a href="">회사개요</a></li>
+                                    <li><a href="">CEO인사말</a></li>
+                                    <li><a href="">회사연혁</a></li>
+                                    <li><a href="">관계사 안내</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">management innovation</a>
+                            <div>
+                                <ul>
+                                    <li><a href="">회사개요</a></li>
+                                    <li><a href="">CEO인사말</a></li>
+                                    <li><a href="">회사연혁</a></li>
+                                    <li><a href="">관계사 안내</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">portfolio</a>
+                            <div>
+                                <ul>
+                                    <li><a href="">회사개요</a></li>
+                                    <li><a href="">CEO인사말</a></li>
+                                    <li><a href="">회사연혁</a></li>
+                                    <li><a href="">관계사 안내</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">sustainability management</a>
+                            <div>
+                                <ul>
+                                    <li><a href="">회사개요</a></li>
+                                    <li><a href="">CEO인사말</a></li>
+                                    <li><a href="">회사연혁</a></li>
+                                    <li><a href="">관계사 안내</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">recruit</a>
+                            <div>
+                                <ul>
+                                    <li><a href="">회사개요</a></li>
+                                    <li><a href="">CEO인사말</a></li>
+                                    <li><a href="">회사연혁</a></li>
+                                    <li><a href="">관계사 안내</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+               </div>
+           </div>
+        </div>
+    </header>
+
+</body>
+</html>
