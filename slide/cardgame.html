@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+		var 카드통 =[];
+		console.log("현재 :"+ 카드통 + "준비완료");
+
+		var 카드모양 = ["하트", "클로버", "다이아몬드","스페이드"];
+		console.log("카드모양셋팅 :" + 카드모양+ "의 카드가 있습니다.");
+
+		var 카드모양당갯수 =13;
+		console.log("카드갯수 :" + 카드모양당갯수 + "개 준비완료");
+
+		for(i=0; i<카드모양.length; i++){
+			for(j=0; j<카드모양당갯수; j++){
+
+				if( j == 0){
+					카드통.push(카드모양[i]+"A")
+				}else if (j == 10){
+					카드통.push(카드모양[i]+"J")
+				}else if (j == 11){
+					카드통.push(카드모양[i]+"Q")
+				}else if (j == 12){
+					카드통.push(카드모양[i]+"K")
+				}else {
+					카드통.push(카드모양[i]+(j+1))
+			}
+    }
+}
+		console.log(카드통)
+		console.log("카드정리완료")
+
+
+
+
+	</script>
+</head>
+	<body>
+
+	</body>
+</html>

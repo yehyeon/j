@@ -86,6 +86,9 @@
         $(function(){
 
             var idx = 0;
+            var aa = setInterval(function(){
+                $('.next').trigger('click')
+            },1000)
 
             function movemuent(시작점,끝점,대상){
                  $('.slide li').eq(대상).find('div').css({
