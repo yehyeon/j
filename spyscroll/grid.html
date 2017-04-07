@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style type="text/css">
+        html,body{margin:0;padding:0;}
+        ul{list-style:none; margin:0; padding:0;}
+        .wrap{
+            border:1px #F00 solid;
+            max-width:800px;
+            height:4000px;
+            margin:0 auto;
+            position:relative;
+        }
+        li{
+            width:25%; height:150px; outline:1px #F00 solid;
+            position:absolute;
+            transition:1s;
+        }
+        @media screen and (max-width:800px) {
+            li{width:33.3333333%;}
+        }
+        @media screen and (max-width:600px) {
+            li{width:50%;}
+        }
+
+    </style>
+    <script>
+        $(function(){
+
+
+            $(window).resize(function(){
+
+               $('.wrap li').each(function(i){
+                     var item_width = $(this).width();
+                    $(this).css('left', item_width * i)
+                })
+
+                var wrapWidth = $('.wrap').width();
+                var ea = Math.round(wrapWidth /  $('.wrap li').width());
+
+                for(i=0,j=0;i<$('.wrap li').length; i+=ea,j++){
+                    $('.wrap li').gt(i).css('top',150*j)
+                }
+
+
+            })
+            $(window).trigger('resize')
+
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+</html>
