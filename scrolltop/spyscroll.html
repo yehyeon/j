@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+
+            var spot = [];
+
+            $('.wrap section').each(function(i){
+               spot.push($(this).offset().top)
+            })
+
+            var spyscorll = function(){
+               var sct = $(this).scrollTop();
+
+                $('.wrap section').each(function(i){
+
+               var a  = sct > spot[i];
+               var b = sct < spot[i] + $(this).height();
+
+                if( a && b && !$(this).is('.on')){
+
+                    $(this).addClass('on').siblings().removeClass('on')
+                    $('nav ul li').eq(i).addClass('on').siblings().removeClass('on')
+                    animation(i);
+
+                }
+              })
+            }
+
+            function animation(x){
+
+                switch(x){
+                    case 0 :
+                        //정의
+                        console.log("1번 애니메이션 하이~~~~큐!~");
+                        var $tg = $('.wrap section').eq(x);
+
+
+                        // animate({},시{간,마무리콜백)
+
+
+                        $tg.find("h1").animate({
+                            "opacity":"1",
+                            "marginTop":"100px"
+                        },{
+                            duration:5000,
+                            step:function(){
+                                var tt = $(this).css('marginTop');
+                                tt = Number(tt.slice(0,-2))
+
+                                if(tt > 50){
+                                    console.log('실행')
+                                    $(this).stop().animate({
+                                        'marginTop':'0'
+                                    })
+                                }
+                            }
+                        })
+
+
+
+
+                    break;
+
+                    case 1 :
+                        //정의
+                        console.log("2번 애니메이션 하이~~~~큐!~")
+                    break;
+
+                    case 2 :
+                        //정의
+                        console.log("3번 애니메이션 하이~~~~큐!~")
+                    break;
+                    case 3 :
+                        //정의
+                        console.log("4번 애니메이션 하이~~~~큐!~")
+                    break;
+                    case 4 :
+                        //정의
+                        console.log("5번 애니메이션 하이~~~~큐!~")
+                    break;
+                }
+            }
+
+
+            $(window).scroll(spyscorll);
+
+            var secScroll = function(e){
+
+                e.preventDefault(); //이벤트 기능 제거
+                var idx = $(this).index(); // 클릭한 li에 위치를 숫자로 찾아서
+
+                $('html,body').animate({
+                    'scrollTop':spot[idx]+1 //body 애니메이션 스크롤값 spot의 위치 반영
+                })
+
+            }
+
+            $('nav li').click(secScroll); // 클릭이벤트
+
+
+        })
+    </script>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style:none; text-align:center;}
+        h1{opacity:0;}
+        a{color:#FFF;}
+        li{display:inline-block;}
+        li.on a{color:#F00;}
+        header{height:80px; width:100%; left:0; top:0; background-color:rgba(0,0,0,.5); line-height:80px; position:fixed; left:0; top:0;}
+        section{
+            text-align:center;
+            height:1000px;
+            border:1px #F00 solid;
+            padding-top:80px;
+            box-sizing:border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li class="on"><a href="">Menu1</a></li>
+                <li><a href="">Menu2</a></li>
+                <li><a href="">Menu3</a></li>
+                <li><a href="">Menu4</a></li>
+                <li><a href="">Menu5</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="wrap">
+        <section>
+           <style>
+
+                .view{
+                    width:500px;
+                    height:350px;
+                    border:1px #F00 solid;
+                    margin:0 auto;
+                }
+                .list li{
+                    display:inline-block;
+                    width:200px;
+                    height: 150px;
+                    border:1px #F00 solid;
+
+                }
+                .list li a{
+                    color:#000;
+                    font-size:25px;
+                    display:block;
+                    height:100%;
+
+                }
+
+            </style>
+            <script>
+                $(function(){
+
+
+                    $('.list li a').click(function(e    ){
+                        e.preventDefault();
+                        var video_code = $(this).attr('href');
+                        videoPlay(video_code)
+                    })
+
+                    $('.list li:eq(0) a').trigger('click');
+
+                    function videoPlay(code){
+                        var url = "https://www.youtube.com/embed/"+code+"?rel=0&amp;controls=0&amp;showinfo=0";
+                        $('.view iframe').attr('src',url)
+                    }
+                })
+
+
+            </script>
+
+            <h1>youtube</h1>
+            <div class="view">
+                <iframe width="500" height="350" src=""  frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="list">
+                <ul>
+                    <li><a href="q5m9cASAJWY">video1</a></li>
+                    <li><a href="KNiYOICJCq0">video2</a></li>
+                    <li><a href="r_EAbsHL-gA">video3</a></li>
+                    <li><a href="zZXgFza6d7E">video4</a></li>
+                    <li><a href="kNzdkOnYkzY">video5</a></li>
+                </ul>
+            </div>
+        </section>
+        <section>
+
+
+        </section>
+        <section>
+            <h1>title3</h1>
+        </section>
+        <section>
+            <h1>title4</h1>
+        </section>
+        <section>
+            <h1>title5</h1>
+        </section>
+    </div>
+
+
+</body>
+</html>

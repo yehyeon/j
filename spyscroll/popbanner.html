@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <style type="text/css">
+        .blind{
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color:rgb(255,0,0);
+            display:none;
+        }
+        .popwrap{
+            position:absolute;
+            width:400px;
+            height:400px;
+            border:1px #F00 solid;
+            left:50%;
+            top:50%;
+            margin-left:-200px;
+            margin-top:-200px;
+            background: #FFF;
+            z-index:1;
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="popup" onclick="popOpen('오류입니다.')">팝업</button>
+    <button class="popup" onclick="popOpen('아이디를 입력하세요.')">팝업</button>
+    <button class="popup" onclick="popOpen('비밀번호 형식이 다릅니다.')">팝업</button>
+    <button class="popup" onclick="popOpen('로그인되었습니다')">팝업</button>
+    <div class="popwrap">
+        <button class="close">닫기</button>
+        <span class="message"></span>
+    </div>
+    <script>
+
+           var popuplist = $('.popwrap').clone()
+             $('.popwrap').remove();
+
+            function blind(){
+                $('body').append("<div class='blind'></div>");
+                $('.blind').fadeTo(500,.5)
+            }
+
+           function popOpen(msg){
+                blind();
+                $('body').append(popuplist);
+                $('.popwrap').fadeIn();
+                $('.popwrap .message').text(msg)
+
+                // $('.popwrap').fadeIn();
+           }
+
+           $('body').on('click','.close',function(){
+                $('.blind').fadeOut(function(){
+                    $(this).remove();
+                });
+                $('.popwrap').fadeOut();
+            })
+
+    </script>
+
+</body>
+</html>
