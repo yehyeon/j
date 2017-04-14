@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            var  offleft = $('.wrap').offset().left;
+            var wrapwidth = $('.wrap').width();
+            $('.fly').css('left',offleft+wrapwidth+10);
+
+            $(window).scroll(function(){
+
+                var sct = $(window).scrollTop();
+                $('.fly').stop().animate({
+                    'top':sct
+                })
+
+            })
+
+        });
+    </script>
+
+    <style>
+        .wrap{width:800px; height:4000px; border:1px #F00 solid; margin:0 auto;}
+        .fly{width:80px; height:200px; border:1px #F00 solid; position:absolute; left:0; top:0;}
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+
+    </div>
+    <div class="fly">
+
+    </div>
+
+</body>
+</html>
