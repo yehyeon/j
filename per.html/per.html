@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <style>
+            html,body{height:100%;}
+            *{margin:0; padding:0;}
+
+            div{height:100%;}
+            div section{
+            width:100%;
+            left:0;
+
+            height:100%; border:1px #F00 solid;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: center;
+            }
+
+            div section:nth-child(1){background-image: url(images/Desert.jpg);}
+            div section:nth-child(2){background-image: url(images/Chrysanthemum.jpg); }
+            div section:nth-child(3){background-image: url(images/Jellyfish.jpg);}
+            div section:nth-child(4){background-image: url(images/Koala.jpg); }
+            div section:nth-child(5){background-image: url(images/Tulips.jpg);}
+        </style>
+        <script>
+            //이미지 태그를 사용하여 section 이 늘어나는 경우 로드방법
+            //$(window).load(function(){})
+
+            $(function(){
+
+                var spot = [];
+                var h = 0;
+
+                $('div section').each(function(i){
+
+                    var offtop = $(this).offset().top;
+                    spot.push(offtop)
+                    $(this).css({
+                        'top':spot[i]
+                    })
+                    h += $(this).height();
+                })
+
+                $('div section').css('position','fixed')
+                $('div').height(h)
+
+
+                $(window).scroll(function(){
+                    var sct = $(this).scrollTop()
+
+                    $('div section').each(function(i){
+
+                        var tt = -1*sct+spot[i];
+
+                        if(sct >  spot[i]) tt *= 0.3
+
+                        $(this).css('top',tt)
+                    })
+                })
+
+
+            })
+
+        </script>
+</head>
+<body>
+    <div>
+        <section></section>
+        <section></section>
+        <section></section>
+        <section></section>
+        <section></section>
+    </div>
+
+</body>
+</html>

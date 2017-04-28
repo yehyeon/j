@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>Document</title>
+
+    <script>
+    $(function(){
+        // https://www.w3schools.com/js/js_date_methods.asp
+
+
+
+
+        var weekArr=['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
+        var time  = new Date();
+        var week = time.getDay();
+        var Hours = time.getHours();
+
+        var HoresArr = [];
+        var minArr = [];
+        var secArr = [];
+
+
+        //ex.1 : 12시 기반
+        /*if(Hours >12){
+           Hours - 12
+        }*/
+        var Min = time.getMinutes()
+        console.log(Min)
+
+        var sec =time.getSeconds();
+        console.log(sec)
+        console.log("사용자가 접속한 시간:"+Hours+":"+Min+":"+sec);
+
+        setInterval(function(){
+             time  = new Date();
+             Hours = time.getHours();
+             Min = time.getMinutes();
+             sec =time.getSeconds();
+
+            // $('body').text("현재시간:"+Hours+":"+Min+":"+sec)
+
+
+            HoresArr=[]
+            for(i=0;i<String(Hours).length;i++){
+                var num = String(Hours).substring(i,i+1);
+                HoresArr.push(num);
+            }
+            minArr = [];
+            // 분
+            for(i=0;i<String(Min).length;i++){
+                 var num = String(Min).substring(i,i+1);
+                minArr.push(num);
+            }
+            secArr = [];
+           //초
+            for(i=0;i<String(sec).length;i++){
+                 var num = String(sec).substring(i,i+1);
+                secArr.push(num);
+            }
+
+            console.log(HoresArr,minArr,secArr)
+
+        },1000)
+
+
+
+
+
+    })
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

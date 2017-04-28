@@ -1,0 +1,17 @@
+{
+
+	"group":[{
+		"name":"A",
+		"member":["채정완","송준혁","정미라","서영신"],
+		"porjectName":"coba1"
+	},{
+		"name":"B",
+		"member":["정우희","심재훈","김호정","양혜숙"],
+		"porjectName":"coba2"
+	},{
+		"name":"C",
+		"member":["정영철","김보민","이다연","권서정"],
+		"porjectName":"coba3"
+	}]
+
+}
